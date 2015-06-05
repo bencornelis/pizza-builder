@@ -1,8 +1,9 @@
 describe("Pizza", function() {
-  it("has size and initially no toppings", function() {
+  it("has size, a default cheese option of 'regular', and initially no toppings", function() {
     var pizza = new Pizza("small");
     expect(pizza.size).to.equal("small");
     expect(pizza.toppings).to.eql([]);
+    expect(pizza.cheese).to.eql("regular");
   });
 
   describe("#addTopping", function() {
@@ -27,6 +28,16 @@ describe("Pizza", function() {
       pizza.addTopping(topping1);
       pizza.addTopping(topping2);
       expect(pizza.calculateCost()).to.equal(9.5);
+    });
+
+    it("adds an extra charge for 'extra' cheese", function() {
+      var pizza = new Pizza("small", "extra");
+      expect(pizza.calculateCost()).to.equal(8);
+    });
+
+    it("gives a discount for no cheese", function() {
+      var pizza = new Pizza("small", "none");
+      expect(pizza.calculateCost()).to.equal(4);
     });
   });
 });

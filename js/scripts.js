@@ -1,8 +1,9 @@
 // Raw javascript
 
-function Pizza(size) {
+function Pizza(size, cheese) {
   this.size = size;
   this.toppings = [];
+  this.cheese = typeof cheese !== "undefined" ? cheese : "regular";
 }
 
 Pizza.prototype.addTopping = function(topping) {
@@ -18,8 +19,15 @@ Pizza.prototype.calculateCost = function() {
     "extra-large": 16
   }
 
+  var cheeseCharges = {
+    "none": -2,
+    "regular": 0,
+    "extra": 2
+  }
+
   var pizzaCost = sizeCosts[this.size];
   this.toppings.forEach(function(topping) { pizzaCost += topping.cost; });
+  pizzaCost += cheeseCharges[this.cheese];
 
   return pizzaCost;
 }
@@ -68,10 +76,11 @@ $(function() {
 
   $("form#new-pizza").change(function() {
     var currentPizza = createUserPizza();
+    console.log(moneyFormat(currentPizza.calculateCost()));
     $("#pizza-price").text(moneyFormat(currentPizza.calculateCost()));
   });
 
-  ["sizes", "toppings", "pizza-cost"].forEach(function(menuPart) {
+  ["sizes", "cheese", "toppings", "pizza-cost"].forEach(function(menuPart) {
     $("#" + menuPart).click(function() {
       $("#" + menuPart).toggleClass("glyphicon-arrow-down");
       $("#" + menuPart).toggleClass("glyphicon-arrow-up");
@@ -97,8 +106,8 @@ $(function() {
     if (pizzaCart.pizzaCount() === 1) {
       setTimeout(function() {
         $("#instruction-popup").fadeIn();
-        setTimeout(function() { $("#instruction-popup").fadeOut(); }, 5000);
-      }, 2000);
+        setTimeout(function() { $("#instruction-popup").fadeOut(); }, 4000);
+      }, 1000);
     }
 
     resetForm();
@@ -120,7 +129,7 @@ $(function() {
     $("#modal").hide();
     $("#pizza-cart").empty();
     $("#added-pizzas").hide();
-    ["sizes", "toppings", "pizza-cost"].forEach(function(menuPart) {
+    ["sizes", "cheese", "toppings", "pizza-cost"].forEach(function(menuPart) {
       $("#" + menuPart).removeClass("glyphicon-arrow-up");
       $("#" + menuPart).addClass("glyphicon-arrow-down");
       $("." + menuPart).hide();
@@ -138,7 +147,8 @@ $(function() {
 var createUserPizza = function() {
   //create new pizza
   var size = $("input[name=size-options]:checked").val();
-  var newPizza = new Pizza(size);
+  var cheese = $("input[name=cheese-options]:checked").val();
+  var newPizza = new Pizza(size, cheese);
 
   //add selected toppings
   $("input.topping:checked").each(function() {
@@ -151,7 +161,7 @@ var createUserPizza = function() {
 }
 
 var toppingsList = function(pizza) {
-  var toppingsList = "<ul class='list-unstyled'>";
+  var toppingsList = "<ul>";
   pizza.toppings.forEach(function(topping) {
     toppingsList += "<li>" + topping.display() + "</li>";
   });
@@ -213,6 +223,9 @@ var displayPizza = function(pizza, pizzaCart) {
 var resetForm = function() {
   $("input[name=size-options]").prop("checked", false);
   $("#medium").prop("checked", true);
+
+  $("input[name=cheese]").prop("checked", false);
+  $("#regular").prop("checked", true);
 
   $("input.topping").prop("checked", false);
 

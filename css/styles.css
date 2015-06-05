@@ -6,7 +6,7 @@ body {
   padding: 25px 50px;
 }
 
-.sizes, .toppings, .meats, .non-meats, #pizza-price, .pizza-cost, .details {
+.sizes, .cheese, .toppings, .meats, .non-meats, #pizza-price, .pizza-cost, .details {
   display: none;
 }
 
