@@ -9,7 +9,66 @@
   <link rel="stylesheet" href="css/styles.css">
   <body>
     <div class="container">
-      
+      <div class="col-md-5">
+        <h3>Pizza Builder</h3>
+        <hr>
+        <form id="new-pizza">
+          <div class="form-group">
+            <h5>Choose a size:</h5>
+            <div class="radio">
+              <label>
+                <input type="radio" name="size-options" id="small" value="small">
+                Small
+              </label>
+            </div>
+            <div class="radio">
+              <label>
+                <input type="radio" name="size-options" id="medium" value="medium" checked>
+                Medium
+              </label>
+            </div>
+            <div class="radio">
+              <label>
+                <input type="radio" name="size-options" id="large" value="large">
+                Large
+              </label>
+            </div>
+          </div>
+          <hr>
+          <div class="form-group">
+            <h5>Choose some toppings:</h5>
+            <hr>
+            <h6>Meats</h6>
+            <div>
+              <label class="checkbox-inline">
+                <input type="checkbox" id="pepperoni" value="2"> Pepperoni
+              </label>
+              <label class="checkbox-inline">
+                <input type="checkbox" id="salami" value="1.5"> Salami
+              </label>
+              <label class="checkbox-inline">
+                <input type="checkbox" id="bacon" value="1"> Bacon
+              </label>
+            </div>
+            <hr>
+            <h6>Non-Meats</h6>
+            <div>
+              <label class="checkbox-inline">
+                <input type="checkbox" id="olives" value="1.25"> Olives
+              </label>
+              <label class="checkbox-inline">
+                <input type="checkbox" id="peppers" value=".5"> Peppers
+              </label>
+              <label class="checkbox-inline">
+                <input type="checkbox" id="mushrooms" value="1.5"> Mushrooms
+              </label>
+            </div>
+          </div>
+          <hr>
+          <button type="submit" class="btn btn-success btn-sm">Add pizza to cart</button>
+          <span id="checkout" class="btn btn-warning btn-sm">Checkout</span>
+        </form>
+      </div>
     </div>
   </body>
 </html>
