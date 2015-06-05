@@ -28,6 +28,10 @@ body {
   left: -20px;
 }
 
+button:focus {
+  outline: 0 !important;
+}
+
 #added-pizzas {
   display: none;
 }
