@@ -82,14 +82,18 @@ $(function() {
 
   $("form#new-pizza").submit(function(event) {
     event.preventDefault();
+
+    //add pizza to cart and display its info
     var newPizza = createUserPizza();
     pizzaCart.addPizza(newPizza);
     displayPizza(newPizza, pizzaCart);
 
+    //update the cart section
     $("#total-cost").text("Total cost: " + moneyFormat(pizzaCart.calculateTotalCost()));
     $("#pizza-count").text(pizzaCart.pizzaCount());
     $("#added-pizzas").show();
 
+    //on the first submit show popup with instructions
     if (pizzaCart.pizzaCount() === 1) {
       setTimeout(function() {
         $("#instruction-popup").fadeIn();
@@ -116,9 +120,9 @@ $(function() {
     $("#modal").hide();
     $("#pizza-cart").empty();
     $("#added-pizzas").hide();
-    ["sizes", "toppings", "meats", "non-meats"].forEach(function(menuPart) {
-      $("#" + menuPart).removeClass("glyphicon-arrow-down");
-      $("#" + menuPart).addClass("glyphicon-arrow-up");
+    ["sizes", "toppings", "pizza-cost"].forEach(function(menuPart) {
+      $("#" + menuPart).removeClass("glyphicon-arrow-up");
+      $("#" + menuPart).addClass("glyphicon-arrow-down");
       $("." + menuPart).hide();
     });
     $("#pizza-price").hide();
