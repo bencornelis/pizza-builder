@@ -9,7 +9,7 @@
   <link rel="stylesheet" href="css/styles.css">
   <body>
     <div class="container">
-      <div class="col-md-5">
+      <div class="col-md-4">
         <h3>Pizza Builder</h3>
         <hr>
         <form id="new-pizza">
@@ -41,33 +41,42 @@
             <h6>Meats</h6>
             <div>
               <label class="checkbox-inline">
-                <input type="checkbox" id="pepperoni" value="2"> Pepperoni
+                <input type="checkbox" class="topping" id="pepperoni" value="2"> Pepperoni
               </label>
               <label class="checkbox-inline">
-                <input type="checkbox" id="salami" value="1.5"> Salami
+                <input type="checkbox" class="topping" id="salami" value="1.5"> Salami
               </label>
               <label class="checkbox-inline">
-                <input type="checkbox" id="bacon" value="1"> Bacon
+                <input type="checkbox" class="topping" id="bacon" value="1"> Bacon
               </label>
             </div>
             <hr>
             <h6>Non-Meats</h6>
             <div>
               <label class="checkbox-inline">
-                <input type="checkbox" id="olives" value="1.25"> Olives
+                <input type="checkbox" class="topping" id="olives" value="1.25"> Olives
               </label>
               <label class="checkbox-inline">
-                <input type="checkbox" id="peppers" value=".5"> Peppers
+                <input type="checkbox" class="topping" id="peppers" value=".5"> Peppers
               </label>
               <label class="checkbox-inline">
-                <input type="checkbox" id="mushrooms" value="1.5"> Mushrooms
+                <input type="checkbox" class="topping" id="mushrooms" value="1.5"> Mushrooms
               </label>
             </div>
           </div>
           <hr>
+          <p id="pizza-price">Pizza cost: $10.00</p>
           <button type="submit" class="btn btn-success btn-sm">Add pizza to cart</button>
-          <span id="checkout" class="btn btn-warning btn-sm">Checkout</span>
+          <hr>
         </form>
+      </div>
+      <div class="col-md-4 col-md-offset-1">
+        <h3>Your Pizzas</h3>
+        <hr>
+        <ul id="pizza-cart">
+
+        </ul>
+        <span id="checkout" class="btn btn-warning btn-sm">Checkout</span>
       </div>
     </div>
   </body>

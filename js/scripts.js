@@ -38,3 +38,38 @@ PizzaCart.prototype.calculateTotalCost = function() {
   this.pizzas.forEach(function(pizza) { totalCost += pizza.calculateCost(); });
   return totalCost;
 }
+
+var moneyFormat = function(number) {
+  return "$" + (number).toFixed(2);
+}
+
+var createUserPizza = function() {
+  //create new pizza
+  var size = $("input[name=size-options]:checked").val();
+  var newPizza = new Pizza(size);
+
+  //add selected toppings
+  $("input.topping:checked").each(function() {
+    var type = $(this).attr("id");
+    var cost = parseFloat($(this).val());
+    newPizza.addTopping(new Topping(type, cost));
+  });
+
+  return newPizza
+}
+
+$(function() {
+  var pizzaCart = new PizzaCart();
+
+  $("form#new-pizza").change(function() {
+    var currentPizza = createUserPizza();
+    $("#pizza-price").text("Pizza cost: " + moneyFormat(currentPizza.calculateCost()));
+  });
+
+  $("form#new-pizza").submit(function(event) {
+    event.preventDefault();
+    pizzaCart.addPizza(createUserPizza());
+  });
+
+
+});
