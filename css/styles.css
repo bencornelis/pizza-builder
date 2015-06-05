@@ -17,3 +17,7 @@ body {
   cursor:pointer;
   opacity: 0.4;
 }
+
+.pizza {
+  width: 400px;
+}

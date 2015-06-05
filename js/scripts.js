@@ -68,20 +68,27 @@ var displayPizza = function(pizza) {
   });
   toppingsList += "</ul>";
 
-  $("ul#pizza-cart").append("<li class='pizza'>" +
-                              "<div class='pizza-image clickable'></div>" +
-                              "<ul class='details list-unstyled'>" +
-                                "<li> Size: " + pizza.size + "</li>" +
-                                "<li> Toppings: " +
-                                  toppingsList +
-                                "</li>" +
-                                "<li> Cost: " + moneyFormat(pizza.calculateCost()) + "</li>" +
-                              "</ul>" +
-                            "</li>" );
+  var pizzaDetails = "<ul class='float details list-unstyled'>" +
+                       "<li> Size: " + pizza.size + "</li>" +
+                       "<li> Toppings: " +
+                          toppingsList +
+                       "</li>" +
+                       "<li> Cost: " + moneyFormat(pizza.calculateCost()) + "</li>" +
+                     "</ul>";
 
-  $("ul#pizza-cart li div.pizza-image").last().click(function() {
-    $(this).next().toggle()
-  })
+
+  $("#pizza-cart").append("<div class='pizza row'>" +
+                            "<div class='col-md-6'>" +
+                              "<div class='float pizza-image clickable'></div>" +
+                            "</div>" +
+                            "<div class='col-md-4 col-md-offset-2'>" +
+                              pizzaDetails +
+                            "</div>" +
+                          "</div>" );
+
+  $("#pizza-cart div.pizza-image").last().click(function() {
+    $(this).parents(".pizza").find("ul.details").fadeToggle();
+  });
 }
 
 var resetForm = function() {
