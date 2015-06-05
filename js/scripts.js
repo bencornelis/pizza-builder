@@ -9,9 +9,11 @@ Pizza.prototype.addTopping = function(topping) {
 
 Pizza.prototype.calculateCost = function() {
   var sizeCosts = {
+    "extra-small": 4,
     "small": 6,
     "medium": 10,
-    "large": 14
+    "large": 14,
+    "extra-large": 16
   }
 
   var pizzaCost = sizeCosts[this.size];
@@ -105,6 +107,13 @@ var toppingsList = function(pizza) {
 
 var displayPizza = function(pizza, pizzaCart) {
 
+  var pizzaClasses = {
+    "extra-small": "pizza-xs",
+    "small": "pizza-sm",
+    "medium": "pizza-md",
+    "large": "pizza-lg",
+    "extra-large": "pizza-xl"
+  }
 
   var pizzaDetails = "<ul class='float details list-unstyled list-group'>" +
                        "<li class='list-group-item'>" +
@@ -121,16 +130,18 @@ var displayPizza = function(pizza, pizzaCart) {
 
   pizzaDetails += "<li class='list-group-item'> Cost: " + moneyFormat(pizza.calculateCost()) + "</li></ul>";
 
-
   $("#pizza-cart").append("<div class='pizza row'>" +
                             "<div class='col-md-6'>" +
                               "<span class='remove clickable glyphicon glyphicon-remove pull-left' aria-hidden='true'></span>" +
-                              "<div class='float pizza-image clickable'></div>" +
+                              "<div class='" + pizzaClasses[pizza.size] + " pizza-image clickable'></div>" +
                             "</div>" +
                             "<div class='col-md-5 col-md-offset-1'>" +
                               pizzaDetails +
                             "</div>" +
-                          "</div>" );
+                          "</div>");
+
+  $("#pizza-cart div.pizza-image").last().hide();
+  $("#pizza-cart div.pizza-image").last().fadeIn();
 
   //add pizza click handlers
   $("#pizza-cart div.pizza-image").last().click(function() {

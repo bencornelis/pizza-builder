@@ -9,13 +9,33 @@ body {
 .pizza-image {
   width: 200px;
   background: url("../images/pizza2.jpg") no-repeat;
-  background-size: cover;
+  background-position: center;
   height: 125px;
+}
+
+.pizza-xs {
+  background-size: 20%;
+}
+
+.pizza-sm {
+  background-size: 40%;
+}
+
+.pizza-md {
+  background-size: 60%;
+}
+
+.pizza-lg {
+  background-size: 80%;
+}
+
+.pizza-xl {
+  background-size: 100%;
 }
 
 .clickable:hover {
   cursor:pointer;
-  opacity: 0.4;
+  opacity: 0.5;
 }
 
 .pizza {
