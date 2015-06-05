@@ -58,6 +58,32 @@ var createUserPizza = function() {
   return newPizza;
 }
 
+// <img src='../images/pizza.jpg>'>
+
+var displayPizza = function(pizza) {
+
+  var toppingsList = "<ul class='list-unstyled'>";
+  pizza.toppings.forEach(function(topping) {
+    toppingsList += "<li>" + topping.type + " : " + moneyFormat(topping.cost);
+  });
+  toppingsList += "</ul>";
+
+  $("ul#pizza-cart").append("<li class='pizza'>" +
+                              "<div class='pizza-image clickable'></div>" +
+                              "<ul class='details list-unstyled'>" +
+                                "<li> Size: " + pizza.size + "</li>" +
+                                "<li> Toppings: " +
+                                  toppingsList +
+                                "</li>" +
+                                "<li> Cost: " + moneyFormat(pizza.calculateCost()) + "</li>" +
+                              "</ul>" +
+                            "</li>" );
+
+  $("ul#pizza-cart li div.pizza-image").last().click(function() {
+    $(this).next().toggle()
+  })
+}
+
 var resetForm = function() {
   $("input[name=size-options]").prop("checked", false);
   $("#medium").prop("checked", true);
@@ -78,7 +104,10 @@ $(function() {
 
   $("form#new-pizza").submit(function(event) {
     event.preventDefault();
-    pizzaCart.addPizza(createUserPizza());
+    var newPizza = createUserPizza();
+    pizzaCart.addPizza(newPizza);
+    displayPizza(newPizza);
+
     resetForm();
   });
 

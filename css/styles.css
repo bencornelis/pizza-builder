@@ -1,3 +1,19 @@
 body {
   padding: 50px;
 }
+
+.details {
+  display: none;
+}
+
+.pizza-image {
+  width: 200px;
+  background: url("../images/pizza2.jpg") no-repeat;
+  background-size: cover;
+  height: 125px;
+}
+
+.clickable:hover {
+  cursor:pointer;
+  opacity: 0.4;
+}
