@@ -68,10 +68,10 @@ $(function() {
 
   $("form#new-pizza").change(function() {
     var currentPizza = createUserPizza();
-    $("#pizza-price").text("Pizza cost: " + moneyFormat(currentPizza.calculateCost()));
+    $("#pizza-price").text(moneyFormat(currentPizza.calculateCost()));
   });
 
-  ["sizes", "toppings", "meats", "non-meats"].forEach(function(menuPart) {
+  ["sizes", "toppings", "pizza-cost"].forEach(function(menuPart) {
     $("#" + menuPart).click(function() {
       $("#" + menuPart).toggleClass("glyphicon-arrow-down");
       $("#" + menuPart).toggleClass("glyphicon-arrow-up");
@@ -89,6 +89,14 @@ $(function() {
     $("#total-cost").text("Total cost: " + moneyFormat(pizzaCart.calculateTotalCost()));
     $("#pizza-count").text(pizzaCart.pizzaCount());
     $("#added-pizzas").show();
+
+    if (pizzaCart.pizzaCount() === 1) {
+      setTimeout(function() {
+        $("#instruction-popup").fadeIn();
+        setTimeout(function() { $("#instruction-popup").fadeOut(); }, 5000);
+      }, 2000);
+    }
+
     resetForm();
   });
 
@@ -204,5 +212,5 @@ var resetForm = function() {
 
   $("input.topping").prop("checked", false);
 
-  $("#pizza-price").text("Pizza cost: $10.00");
+  $("#pizza-price").text("$10.00");
 }
