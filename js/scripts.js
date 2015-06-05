@@ -82,8 +82,8 @@ $(function() {
 
   ["sizes", "cheese", "toppings", "pizza-cost"].forEach(function(menuPart) {
     $("#" + menuPart).click(function() {
-      $("#" + menuPart).toggleClass("glyphicon-arrow-down");
-      $("#" + menuPart).toggleClass("glyphicon-arrow-up");
+      $("#" + menuPart).toggleClass("glyphicon-collapse-down");
+      $("#" + menuPart).toggleClass("glyphicon-collapse-up");
       $("." + menuPart).toggle();
       $("#pizza-price").show();
     });
@@ -130,8 +130,8 @@ $(function() {
     $("#pizza-cart").empty();
     $("#added-pizzas").hide();
     ["sizes", "cheese", "toppings", "pizza-cost"].forEach(function(menuPart) {
-      $("#" + menuPart).removeClass("glyphicon-arrow-up");
-      $("#" + menuPart).addClass("glyphicon-arrow-down");
+      $("#" + menuPart).removeClass("glyphicon-collapse-up");
+      $("#" + menuPart).addClass("glyphicon-collapse-down");
       $("." + menuPart).hide();
     });
     $("#pizza-price").hide();
