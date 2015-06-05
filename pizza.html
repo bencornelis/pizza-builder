@@ -9,85 +9,99 @@
   <link rel="stylesheet" href="css/styles.css">
   <body>
     <div class="container">
-      <div class="col-md-4">
-        <h3>Pizza Builder</h3>
-        <hr>
-        <form id="new-pizza">
-          <div class="form-group">
-            <h5>Choose a size:</h5>
-            <div class="radio">
-              <label>
-                <input type="radio" name="size-options" id="extra-small" value="extra-small">
-                Extra-small
-              </label>
-            </div>
-            <div class="radio">
-              <label>
-                <input type="radio" name="size-options" id="small" value="small">
-                Small
-              </label>
-            </div>
-            <div class="radio">
-              <label>
-                <input type="radio" name="size-options" id="medium" value="medium" checked>
-                Medium
-              </label>
-            </div>
-            <div class="radio">
-              <label>
-                <input type="radio" name="size-options" id="large" value="large">
-                Large
-              </label>
-            </div>
-            <div class="radio">
-              <label>
-                <input type="radio" name="size-options" id="extra-large" value="extra-large">
-                Extra-large
-              </label>
-            </div>
-          </div>
+      <div class="row">
+        <div class="col-md-4">
+          <h3>Pizza Builder</h3>
           <hr>
-          <div class="form-group">
-            <h5>Choose some toppings:</h5>
-            <br>
-            <h6>Meats</h6>
-            <div>
-              <label class="checkbox-inline">
-                <input type="checkbox" class="topping" id="pepperoni" value="2"> Pepperoni
-              </label>
-              <label class="checkbox-inline">
-                <input type="checkbox" class="topping" id="salami" value="1.5"> Salami
-              </label>
-              <label class="checkbox-inline">
-                <input type="checkbox" class="topping" id="bacon" value="1"> Bacon
-              </label>
+          <form id="new-pizza">
+            <div class="form-group">
+              <h5>Choose a size:</h5>
+              <div class="radio">
+                <label>
+                  <input type="radio" name="size-options" id="extra-small" value="extra-small">
+                  Extra-small
+                </label>
+              </div>
+              <div class="radio">
+                <label>
+                  <input type="radio" name="size-options" id="small" value="small">
+                  Small
+                </label>
+              </div>
+              <div class="radio">
+                <label>
+                  <input type="radio" name="size-options" id="medium" value="medium" checked>
+                  Medium
+                </label>
+              </div>
+              <div class="radio">
+                <label>
+                  <input type="radio" name="size-options" id="large" value="large">
+                  Large
+                </label>
+              </div>
+              <div class="radio">
+                <label>
+                  <input type="radio" name="size-options" id="extra-large" value="extra-large">
+                  Extra-large
+                </label>
+              </div>
             </div>
             <hr>
-            <h6>Non-Meats</h6>
-            <div>
-              <label class="checkbox-inline">
-                <input type="checkbox" class="topping" id="olives" value="1.25"> Olives
-              </label>
-              <label class="checkbox-inline">
-                <input type="checkbox" class="topping" id="peppers" value=".5"> Peppers
-              </label>
-              <label class="checkbox-inline">
-                <input type="checkbox" class="topping" id="mushrooms" value="1.5"> Mushrooms
-              </label>
+            <div class="form-group">
+              <h5>Choose some toppings:</h5>
+              <br>
+              <h6>Meats</h6>
+              <div>
+                <label class="checkbox-inline">
+                  <input type="checkbox" class="topping" id="pepperoni" value="2"> Pepperoni
+                </label>
+                <label class="checkbox-inline">
+                  <input type="checkbox" class="topping" id="salami" value="1.5"> Salami
+                </label>
+                <label class="checkbox-inline">
+                  <input type="checkbox" class="topping" id="bacon" value="1"> Bacon
+                </label>
+              </div>
+              <hr>
+              <h6>Non-Meats</h6>
+              <div>
+                <label class="checkbox-inline">
+                  <input type="checkbox" class="topping" id="olives" value="1.25"> Olives
+                </label>
+                <label class="checkbox-inline">
+                  <input type="checkbox" class="topping" id="peppers" value=".5"> Peppers
+                </label>
+                <label class="checkbox-inline">
+                  <input type="checkbox" class="topping" id="mushrooms" value="1.5"> Mushrooms
+                </label>
+              </div>
             </div>
-          </div>
+            <hr>
+            <p id="pizza-price">Pizza cost: $10.00</p>
+            <button type="submit" class="btn btn-success btn-sm">Add a pizza</button>
+            <hr>
+          </form>
+        </div>
+        <div id="added-pizzas" class="col-md-4 col-md-offset-2">
+          <h3>Your Pizzas <span class="glyphicon glyphicon-shopping-cart pull-right" aria-hidden="true"><span id="pizza-count" class="text-danger"></span></span></h3>
+          <h5><span id="total-cost"></span> <span id="checkout" class="btn btn-warning btn-xs pull-right">Checkout</span></h5>
           <hr>
-          <p id="pizza-price">Pizza cost: $10.00</p>
-          <button type="submit" class="btn btn-success btn-sm">Add a pizza</button>
-          <hr>
-        </form>
-      </div>
-      <div id="added-pizzas" class="col-md-4 col-md-offset-1">
-        <h3>Your Pizzas <span class='glyphicon glyphicon-shopping-cart pull-right' aria-hidden='true'><span id="pizza-count" class="text-danger"></span></span></h3>
-        <h5><span id="total-cost"></span> <span id="checkout" class="btn btn-warning btn-xs pull-right">Checkout</span></h5>
-        <hr>
-        <div id="pizza-cart">
+          <div id="pizza-cart">
 
+          </div>
+        </div>
+      </div>
+
+      <!-- checkout modal -->
+      <div id="modal" class="modal">
+        <div id="modal-checkout">
+          <div id="checkout-info" class="well">
+            <h3 class="text-info">You bought <span id="final-pizza-count"></span> for <span id="final-cost"></span>. Enjoy!</h3>
+            <h5 id="new-cart" class="text-success clickable underline">Buy some more pizzas! &nbsp;
+              <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span>
+            </h5>
+          </div>
         </div>
       </div>
     </div>

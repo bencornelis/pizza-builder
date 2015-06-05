@@ -1,3 +1,5 @@
+// Raw javascript
+
 function Pizza(size) {
   this.size = size;
   this.toppings = [];
@@ -58,6 +60,9 @@ var moneyFormat = function(number) {
   return "$" + (number).toFixed(2);
 }
 
+
+// Jquery event listeners
+
 $(function() {
   var pizzaCart = new PizzaCart();
 
@@ -78,8 +83,31 @@ $(function() {
     resetForm();
   });
 
+  $("#checkout").click(function() {
+
+    var pizzaCount = pizzaCart.pizzaCount();
+    if (pizzaCount === 1) {
+      $("#final-pizza-count").text(pizzaCart.pizzaCount() + " pizza");
+    } else {
+      $("#final-pizza-count").text(pizzaCart.pizzaCount() + " pizzas");
+    }
+
+    $("#final-cost").text(moneyFormat(pizzaCart.calculateTotalCost()));
+    $("#modal").fadeIn();
+  });
+
+  $("#checkout-info #new-cart").click(function() {
+    $("#modal").hide();
+    $("#pizza-cart").empty();
+    $("#added-pizzas").hide();
+    resetForm();
+    pizzaCart = new PizzaCart();
+  });
 });
 
+
+
+// Helper functions
 
 var createUserPizza = function() {
   //create new pizza
