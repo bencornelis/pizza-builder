@@ -58,30 +58,32 @@ var createUserPizza = function() {
   return newPizza;
 }
 
-// <img src='../images/pizza.jpg>'>
-
 var displayPizza = function(pizza) {
 
-  var toppingsList = "<ul class='list-unstyled'>";
-  pizza.toppings.forEach(function(topping) {
-    toppingsList += "<li>" + topping.type + " : " + moneyFormat(topping.cost);
-  });
-  toppingsList += "</ul>";
 
-  var pizzaDetails = "<ul class='float details list-unstyled'>" +
-                       "<li> Size: " + pizza.size + "</li>" +
-                       "<li> Toppings: " +
-                          toppingsList +
-                       "</li>" +
-                       "<li> Cost: " + moneyFormat(pizza.calculateCost()) + "</li>" +
-                     "</ul>";
+  var pizzaDetails = "<ul class='float details list-unstyled list-group'>" +
+                       "<li class='list-group-item'> Size: " + pizza.size + "</li>";
+  if (pizza.toppings.length > 0) {
+    var toppingsList = "<ul class='list-unstyled'>";
+    pizza.toppings.forEach(function(topping) {
+      toppingsList += "<li>" + topping.type + ", " + moneyFormat(topping.cost);
+    });
+    toppingsList += "</ul>";
+    pizzaDetails += "<li class='list-group-item'> Toppings: " +
+                      toppingsList +
+                    "</li>";
+  } else {
+    pizzaDetails += "<li class='list-group-item'> No toppings </li>";
+  }
+
+  pizzaDetails += "<li class='list-group-item'> Cost: " + moneyFormat(pizza.calculateCost()) + "</li></ul>";
 
 
   $("#pizza-cart").append("<div class='pizza row'>" +
                             "<div class='col-md-6'>" +
                               "<div class='float pizza-image clickable'></div>" +
                             "</div>" +
-                            "<div class='col-md-4 col-md-offset-2'>" +
+                            "<div class='col-md-5 col-md-offset-1'>" +
                               pizzaDetails +
                             "</div>" +
                           "</div>" );
