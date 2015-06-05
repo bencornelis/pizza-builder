@@ -27,3 +27,7 @@ body {
   position:absolute;
   left: -20px;
 }
+
+#added-pizzas {
+  display: none;
+}

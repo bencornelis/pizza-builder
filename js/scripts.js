@@ -48,6 +48,28 @@ var moneyFormat = function(number) {
   return "$" + (number).toFixed(2);
 }
 
+
+$(function() {
+  var pizzaCart = new PizzaCart();
+
+  $("form#new-pizza").change(function() {
+    var currentPizza = createUserPizza();
+    $("#pizza-price").text("Pizza cost: " + moneyFormat(currentPizza.calculateCost()));
+  });
+
+  $("form#new-pizza").submit(function(event) {
+    event.preventDefault();
+    var newPizza = createUserPizza();
+    pizzaCart.addPizza(newPizza);
+    displayPizza(newPizza, pizzaCart);
+
+    $("#added-pizzas").show();
+    resetForm();
+  });
+
+});
+
+
 var createUserPizza = function() {
   //create new pizza
   var size = $("input[name=size-options]:checked").val();
@@ -63,6 +85,15 @@ var createUserPizza = function() {
   return newPizza;
 }
 
+var toppingsList = function(pizza) {
+  var toppingsList = "<ul class='list-unstyled'>";
+  pizza.toppings.forEach(function(topping) {
+    toppingsList += "<li>" + topping.type + ", " + moneyFormat(topping.cost);
+  });
+  toppingsList += "</ul>";
+  return toppingsList;
+}
+
 var displayPizza = function(pizza, pizzaCart) {
 
 
@@ -72,13 +103,8 @@ var displayPizza = function(pizza, pizzaCart) {
                        "</li>";
 
   if (pizza.toppings.length > 0) {
-    var toppingsList = "<ul class='list-unstyled'>";
-    pizza.toppings.forEach(function(topping) {
-      toppingsList += "<li>" + topping.type + ", " + moneyFormat(topping.cost);
-    });
-    toppingsList += "</ul>";
     pizzaDetails += "<li class='list-group-item'> Toppings: " +
-                      toppingsList +
+                      toppingsList(pizza) +
                     "</li>";
   } else {
     pizzaDetails += "<li class='list-group-item'> No toppings </li>";
@@ -97,6 +123,7 @@ var displayPizza = function(pizza, pizzaCart) {
                             "</div>" +
                           "</div>" );
 
+  //add pizza click handlers
   $("#pizza-cart div.pizza-image").last().click(function() {
     $(this).parents(".pizza").find("ul.details").fadeToggle();
   });
@@ -115,24 +142,3 @@ var resetForm = function() {
 
   $("#pizza-price").text("Pizza cost: $10.00");
 }
-
-
-$(function() {
-  var pizzaCart = new PizzaCart();
-
-  $("form#new-pizza").change(function() {
-    var currentPizza = createUserPizza();
-    $("#pizza-price").text("Pizza cost: " + moneyFormat(currentPizza.calculateCost()));
-  });
-
-  $("form#new-pizza").submit(function(event) {
-    event.preventDefault();
-    var newPizza = createUserPizza();
-    pizzaCart.addPizza(newPizza);
-    displayPizza(newPizza, pizzaCart);
-
-    resetForm();
-  });
-
-
-});
