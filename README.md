@@ -10,7 +10,9 @@ Ben Cornelis
 
 ## About
 
-Single page app built with Javascript and jQuery, with the following features:
+Single page app built with Javascript and jQuery.
+
+Features:
 
 - users can choose size, cheese amount, and toppings for a pizza, and view its updated cost
 - users can add and delete pizzas from a shopping cart and see the total cost update

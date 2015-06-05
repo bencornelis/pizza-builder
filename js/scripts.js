@@ -69,7 +69,7 @@ var moneyFormat = function(number) {
 }
 
 
-// Jquery event listeners
+// jQuery event listeners
 
 $(function() {
   var pizzaCart = new PizzaCart();
