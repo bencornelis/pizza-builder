@@ -24,3 +24,17 @@ function Topping(type, cost) {
   this.type = type;
   this.cost = cost;
 }
+
+function PizzaCart() {
+  this.pizzas = [];
+}
+
+PizzaCart.prototype.addPizza = function(pizza) {
+  this.pizzas.push(pizza);
+}
+
+PizzaCart.prototype.calculateTotalCost = function() {
+  var totalCost = 0;
+  this.pizzas.forEach(function(pizza) { totalCost += pizza.calculateCost(); });
+  return totalCost;
+}
