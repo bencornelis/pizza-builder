@@ -31,3 +31,9 @@ body {
 #added-pizzas {
   display: none;
 }
+
+#pizza-count {
+  position:absolute;
+  top: -23px;
+  left: 4px;
+}

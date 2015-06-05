@@ -71,6 +71,7 @@ $(function() {
     displayPizza(newPizza, pizzaCart);
 
     $("#total-cost").text("Total cost: " + moneyFormat(pizzaCart.calculateTotalCost()));
+    $("#pizza-count").text(pizzaCart.pizzaCount());
     $("#added-pizzas").show();
     resetForm();
   });
@@ -139,6 +140,7 @@ var displayPizza = function(pizza, pizzaCart) {
   $(".glyphicon-remove").last().click(function() {
     $(this).parents(".pizza").remove();
     pizzaCart.removePizza(pizza);
+    $("#total-cost").text("Total cost: " + moneyFormat(pizzaCart.calculateTotalCost()));
   });
 }
 
