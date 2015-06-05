@@ -2,13 +2,17 @@ body {
   padding: 50px;
 }
 
-.details {
+#pizza-builder {
+  padding-left: 50px;
+}
+
+.sizes, .toppings, .meats, .non-meats, #pizza-price, .details {
   display: none;
 }
 
 .pizza-image {
   width: 200px;
-  background: url("../images/pizza2.jpg") no-repeat;
+  background: url("../images/pizza.jpg") no-repeat;
   background-position: center;
   height: 125px;
 }
@@ -39,7 +43,7 @@ body {
 }
 
 .clickable:hover {
-  cursor:pointer;
+  cursor: pointer;
   opacity: 0.5;
 }
 
@@ -64,14 +68,14 @@ button:focus {
 #pizza-count {
   position:absolute;
   top: -23px;
-  left: 4px;
+  left: 5px;
 }
 
 #modal-checkout {
   z-index: 10;
   display: inline-block;
   position: relative;
-  width:500px;
+  width:600px;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);

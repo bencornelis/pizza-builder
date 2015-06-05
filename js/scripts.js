@@ -71,6 +71,15 @@ $(function() {
     $("#pizza-price").text("Pizza cost: " + moneyFormat(currentPizza.calculateCost()));
   });
 
+  ["sizes", "toppings", "meats", "non-meats"].forEach(function(menuPart) {
+    $("#" + menuPart).click(function() {
+      $("#" + menuPart).toggleClass("glyphicon-arrow-down");
+      $("#" + menuPart).toggleClass("glyphicon-arrow-up");
+      $("." + menuPart).toggle();
+      $("#pizza-price").show();
+    });
+  });
+
   $("form#new-pizza").submit(function(event) {
     event.preventDefault();
     var newPizza = createUserPizza();
@@ -84,7 +93,6 @@ $(function() {
   });
 
   $("#checkout").click(function() {
-
     var pizzaCount = pizzaCart.pizzaCount();
     if (pizzaCount === 1) {
       $("#final-pizza-count").text(pizzaCart.pizzaCount() + " pizza");
@@ -100,6 +108,12 @@ $(function() {
     $("#modal").hide();
     $("#pizza-cart").empty();
     $("#added-pizzas").hide();
+    ["sizes", "toppings", "meats", "non-meats"].forEach(function(menuPart) {
+      $("#" + menuPart).removeClass("glyphicon-arrow-down");
+      $("#" + menuPart).addClass("glyphicon-arrow-up");
+      $("." + menuPart).hide();
+    });
+    $("#pizza-price").hide();
     resetForm();
     pizzaCart = new PizzaCart();
   });
@@ -172,7 +186,7 @@ var displayPizza = function(pizza, pizzaCart) {
   $("#pizza-cart div.pizza-image").last().fadeIn();
 
   //add pizza click handlers
-  $("#pizza-cart div.pizza-image").last().click(function() {
+  $("#pizza-cart div.pizza-image").last().hover(function() {
     $(this).parents(".pizza").find("ul.details").fadeToggle();
   });
 
