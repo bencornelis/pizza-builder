@@ -55,8 +55,18 @@ var createUserPizza = function() {
     newPizza.addTopping(new Topping(type, cost));
   });
 
-  return newPizza
+  return newPizza;
 }
+
+var resetForm = function() {
+  $("input[name=size-options]").prop("checked", false);
+  $("#medium").prop("checked", true);
+
+  $("input.topping").prop("checked", false);
+
+  $("#pizza-price").text("Pizza cost: $10.00");
+}
+
 
 $(function() {
   var pizzaCart = new PizzaCart();
@@ -69,6 +79,7 @@ $(function() {
   $("form#new-pizza").submit(function(event) {
     event.preventDefault();
     pizzaCart.addPizza(createUserPizza());
+    resetForm();
   });
 
 
