@@ -37,6 +37,14 @@ describe("Topping", function() {
     expect(topping.type).to.equal("pepperoni");
     expect(topping.cost).to.equal(2);
   });
+
+  describe("#display", function() {
+    it("displays the topping info", function() {
+      var topping = new Topping("pepperoni", 2);
+      expect(topping.display()).to.equal("pepperoni, $2.00");
+    });
+  });
+
 });
 
 describe("PizzaCart", function() {
@@ -72,7 +80,7 @@ describe("PizzaCart", function() {
       pizza2.addTopping(topping4);
       cart.addPizza(pizza2)
 
-      expect(cart.calculateTotalCost()).to.eql(21.5);
+      expect(cart.calculateTotalCost()).to.equal(21.5);
     });
   });
 
@@ -83,6 +91,17 @@ describe("PizzaCart", function() {
       cart.addPizza(pizza);
       cart.removePizza(pizza);
       expect(cart.pizzas).to.eql([]);
+    });
+  });
+
+  describe("#pizzaCount", function() {
+    it("counts the number of pizzas in the cart", function() {
+      var cart = new PizzaCart();
+      var pizza1 = new Pizza("medium");
+      var pizza2 = new Pizza("small");
+      var pizza3 = new Pizza("large");
+      [pizza1, pizza2, pizza3].forEach(function(pizza) { cart.addPizza(pizza); });
+      expect(cart.pizzaCount()).to.equal(3);
     });
   });
 })
