@@ -22,3 +22,8 @@ body {
   width: 500px;
   height:200px;
 }
+
+.remove {
+  position:absolute;
+  left: -20px;
+}

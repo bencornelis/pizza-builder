@@ -75,4 +75,14 @@ describe("PizzaCart", function() {
       expect(cart.calculateTotalCost()).to.eql(21.5);
     });
   });
+
+  describe("#removePizza", function() {
+    it("removes a pizza from the cart", function() {
+      var cart = new PizzaCart();
+      var pizza = new Pizza("medium");
+      cart.addPizza(pizza);
+      cart.removePizza(pizza);
+      expect(cart.pizzas).to.eql([]);
+    });
+  });
 })

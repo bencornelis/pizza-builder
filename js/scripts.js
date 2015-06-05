@@ -33,6 +33,11 @@ PizzaCart.prototype.addPizza = function(pizza) {
   this.pizzas.push(pizza);
 }
 
+PizzaCart.prototype.removePizza = function(pizza) {
+  var pizzaIndex = this.pizzas.indexOf(pizza);
+  this.pizzas.splice(pizzaIndex, 1);
+}
+
 PizzaCart.prototype.calculateTotalCost = function() {
   var totalCost = 0;
   this.pizzas.forEach(function(pizza) { totalCost += pizza.calculateCost(); });
@@ -58,11 +63,14 @@ var createUserPizza = function() {
   return newPizza;
 }
 
-var displayPizza = function(pizza) {
+var displayPizza = function(pizza, pizzaCart) {
 
 
   var pizzaDetails = "<ul class='float details list-unstyled list-group'>" +
-                       "<li class='list-group-item'> Size: " + pizza.size + "</li>";
+                       "<li class='list-group-item'>" +
+                          "Size: " + pizza.size +
+                       "</li>";
+
   if (pizza.toppings.length > 0) {
     var toppingsList = "<ul class='list-unstyled'>";
     pizza.toppings.forEach(function(topping) {
@@ -81,6 +89,7 @@ var displayPizza = function(pizza) {
 
   $("#pizza-cart").append("<div class='pizza row'>" +
                             "<div class='col-md-6'>" +
+                              "<span class='remove clickable glyphicon glyphicon-remove pull-left' aria-hidden='true'></span>" +
                               "<div class='float pizza-image clickable'></div>" +
                             "</div>" +
                             "<div class='col-md-5 col-md-offset-1'>" +
@@ -90,6 +99,11 @@ var displayPizza = function(pizza) {
 
   $("#pizza-cart div.pizza-image").last().click(function() {
     $(this).parents(".pizza").find("ul.details").fadeToggle();
+  });
+
+  $(".glyphicon-remove").last().click(function() {
+    $(this).parents(".pizza").remove();
+    pizzaCart.removePizza(pizza);
   });
 }
 
@@ -115,7 +129,7 @@ $(function() {
     event.preventDefault();
     var newPizza = createUserPizza();
     pizzaCart.addPizza(newPizza);
-    displayPizza(newPizza);
+    displayPizza(newPizza, pizzaCart);
 
     resetForm();
   });
