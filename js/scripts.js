@@ -179,6 +179,7 @@ var displayPizza = function(pizza, pizzaCart) {
     "extra-large": "pizza-xl"
   }
 
+  //build the pizza dislay for the pizza cart
   var pizzaDetails = "<ul class='float details list-unstyled list-group'>" +
                        "<li class='list-group-item'>" +
                           "Size: " + pizza.size +
