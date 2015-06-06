@@ -10,6 +10,10 @@ body {
   display: none;
 }
 
+.details {
+  position: absolute;
+}
+
 .pizza-image {
   width: 200px;
   background: url("../images/pizza.jpg") no-repeat;
