@@ -18,6 +18,8 @@ Features:
 - users can add and delete pizzas from a shopping cart and see the total cost update
 - users can view details for previously added pizzas
 
+Note: I made a small commit after the deadline - just added a css property position:absolute to the pizza detail popups to make them stop pushing the neighboring pizza down. I would have branched, but I think it'll make it easier to review.
+
 ## Usage
 
 To use the app, open pizza.html in your browser. Choose some toppings and add
