@@ -12,6 +12,8 @@ Ben Cornelis
 
 Single page app built with Javascript and jQuery.
 
+http://pizza-builder.bitballoon.com/
+
 Features:
 
 - users can choose size, cheese amount, and toppings for a pizza, and view its updated cost
